@@ -1,6 +1,6 @@
 // Importing classes
-import ppanel.PPanel;
-import ppanel.panels.ModernPlane;
+import krcsn.ppanel.PPanel;
+import krcsn.ppanel.panels.ModernPlane;
 
 ModernPlane modernplane; // Creating plane instance
 PPanel.Drawable titleBarDraw;
@@ -22,7 +22,7 @@ void setup() {
   };
   
   // Set Drawable
-  modernplane.setDrawOnTitleBar(titleBarDraw);
+  modernplane.setDrawableOnTitleBar(titleBarDraw);
 }
 
 void draw() {

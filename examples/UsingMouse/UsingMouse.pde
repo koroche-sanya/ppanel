@@ -1,6 +1,6 @@
 // Importing classes
-import ppanel.PPanel;
-import ppanel.panels.Win95Plane;
+import krcsn.ppanel.PPanel;
+import krcsn.ppanel.panels.Win95Plane;
 
 Win95Plane win95plane; // Creating plane instance
 

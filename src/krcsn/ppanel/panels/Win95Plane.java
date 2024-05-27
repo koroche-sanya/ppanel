@@ -90,14 +90,7 @@ public class Win95Plane extends BasePlane {
     pgi.noStroke();
     pgi.fill(closeFillColor);
     pgi.rect(parent.width - barButtons.size - 7, 7, barButtons.size, titleBar.height - 14);
-
-    pgi.stroke(230);
-    pgi.strokeWeight(1);
-    line(parent.width - barButtons.size - 7, 7, barButtons.size, 0);
-    line(parent.width - barButtons.size - 7, 7, 0, titleBar.height - 14);
-    pgi.stroke(50);
-    line(parent.width - 7, titleBar.height - 7, -barButtons.size, 0);
-    line(parent.width - 7, titleBar.height - 7, 0, -titleBar.height + 15);
+    button3D(parent.width - barButtons.size - 7, 7, barButtons.size, titleBar.height - 14);
 
     pgi.stroke(0);
     pgi.strokeWeight(2);
@@ -117,14 +110,7 @@ public class Win95Plane extends BasePlane {
     pgi.fill(fillFillColor);
 
     pgi.rect(parent.width - barButtons.size * 2 - 10, 7, barButtons.size, titleBar.height - 14);
-
-    pgi.stroke(230);
-    pgi.strokeWeight(1);
-    line(parent.width - barButtons.size * 2 - 10, 7, barButtons.size, 0);
-    line(parent.width - barButtons.size * 2 - 10, 7, 0, titleBar.height - 14);
-    pgi.stroke(50);
-    line(parent.width - barButtons.size - 10, titleBar.height - 7, -barButtons.size, 0);
-    line(parent.width - barButtons.size - 10, titleBar.height - 7, 0, -titleBar.height + 15);
+    button3D(parent.width - barButtons.size * 2 - 10, 7, barButtons.size, titleBar.height - 14);
 
     pgi.stroke(0);
     float beginFillX = parent.width - barButtons.size * 2;
@@ -153,22 +139,17 @@ public class Win95Plane extends BasePlane {
     pgi.noStroke();
     pgi.fill(iconFillColor);
     pgi.rect(parent.width - barButtons.size * buttonInd - 10, 7, barButtons.size, titleBar.height - 14);
+    button3D(parent.width - barButtons.size * buttonInd - 10, 7, barButtons.size, titleBar.height - 14);
 
-    pgi.stroke(230);
-    pgi.strokeWeight(1);
-    line(parent.width - barButtons.size * buttonInd - 10, 7, barButtons.size, 0);
-    line(parent.width - barButtons.size * buttonInd - 10, 7, 0, titleBar.height - 14);
-    pgi.stroke(50);
-    line(parent.width - barButtons.size * (buttonInd - 1) - 10, titleBar.height - 7, -barButtons.size, 0);
-    line(parent.width - barButtons.size * (buttonInd - 1) - 10, titleBar.height - 7, 0, -titleBar.height + 15);
-
-    float iconY = endY;
+    float iconY = endY - 2;
     float beginIconX = parent.width - barButtons.size * buttonInd - 5;
     float endIconX = beginIconX + barButtons.size / 2;
 
     pgi.stroke(0);
-    pgi.strokeWeight(2);
+    pgi.strokeWeight(2.5f);
+    pgi.strokeCap(PApplet.PROJECT);
     pgi.line(beginIconX, iconY, endIconX, iconY);
+    pgi.strokeCap(PApplet.ROUND);
   }
 
   protected void drawTitle() {
@@ -191,7 +172,21 @@ public class Win95Plane extends BasePlane {
     pgi.text(targetTitle, 30, titleBar.height / 2);
   }
 
-  private void line(float x1, float y1, float w, float h) {
-    pgi.line(x1, y1, x1 + w, y1 + h);
+  private void button3D(float x, float y, float w, float h) {
+    // Light side
+    pgi.stroke(255);
+    pgi.strokeWeight(1);
+    pgi.line(x, y, x + w, y); // Top
+    pgi.line(x, y, x, y + h); // Left
+
+    // Dark side
+    pgi.stroke(100);
+    pgi.line(x + w - 1, y, x + w - 1, y + h); // Right
+    pgi.line(x, y + h - 1, x + w - 1, y + h - 1); // Bottom
+
+    // Dark side 2
+    pgi.stroke(50);
+    pgi.line(x + w, y, x + w, y + h); // Right
+    pgi.line(x, y + h, x + w, y + h); // Bottom
   }
 }
