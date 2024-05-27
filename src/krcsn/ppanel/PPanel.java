@@ -332,7 +332,7 @@ public abstract class PPanel {
   }
 
 /** @return barButtons (size) */
-  public BarButtons getBarBarButtons() {
+  public BarButtons getBarButtons() {
     return barButtons;
   }
 
@@ -612,27 +612,34 @@ public abstract class PPanel {
     return parent.pmouseY - getTitleBar().height;
   }
 
+
+/** @return is frame is resizing  */
   protected boolean isResizing() {
     return resized;
   }
 
+/** @return parent PApplet  */
   public PApplet getPApplet() {
     return parent;
   }
 
+/** @return frame IconImage */
   public PImage getIcon() {
     return new PImage(frame.getIconImage());
   }
 
+/** @return processing native graphics (not java.awt) from PApplet  */
   public PGraphicsJava2D getAWTGraphics() {
     PGraphicsJava2D pg2d = (PGraphicsJava2D)parent.g;
     return pg2d;
   }
 
+/** @return java.awt.Graphics from PApplet  */
   public Graphics getNativeGraphics() {
     return (Graphics)getAWTGraphics().getNative();
   }
-
+  
+/** @return screen image (screenshot) */
   public PImage getScreen() {
     try {
       Robot robot = new Robot();
@@ -646,6 +653,7 @@ public abstract class PPanel {
     }
   }
 
+/** @return screen size  */
   public Rectangle getScreenBounds() {
     GraphicsConfiguration gc = frame.getGraphicsConfiguration();
     Rectangle screenBounds = gc.getBounds();
@@ -654,6 +662,7 @@ public abstract class PPanel {
 
   // Exception function
 
+/** Prints exception */
   protected void exception(String message) {
     System.err.println();
     System.err.println("Exception!");
@@ -662,7 +671,8 @@ public abstract class PPanel {
     String className = classPath.substring(lastPoint + 1, classPath.length());
     System.err.println(className + " > " + message);
   }
-
+  
+/** Prints warning */
   protected void warning(String warning) {
     System.err.println();
     System.err.println("Warning!");
