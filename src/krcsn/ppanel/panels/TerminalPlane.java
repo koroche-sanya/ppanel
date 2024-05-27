@@ -6,6 +6,8 @@ import processing.core.PGraphics;
 import processing.core.PFont;
 import processing.core.PImage;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class TerminalPlane extends BasePlane {
@@ -66,6 +68,8 @@ public class TerminalPlane extends BasePlane {
     pgi.fill(fillFillColor);
     pgi.textSize(barButtons.size);
     pgi.text("□", parent.width - barButtons.size * 2, 5);
+    
+    isFullscreen = frame.getExtendedState() == JFrame.MAXIMIZED_BOTH;
   }
 
   protected void drawIconizeButton () {
@@ -76,6 +80,31 @@ public class TerminalPlane extends BasePlane {
     pgi.fill(iconFillColor);
     pgi.textSize(barButtons.size);
     pgi.text("-", parent.width - barButtons.size * buttonInd, 5);
+  }
+
+  protected void handleMouseLogic() {
+    if (parent.mousePressed && parent.mouseButton == PApplet.LEFT && !mousePressed) {
+      if (closeCollision) {
+        parent.exit();
+      } else if (fillCollision) {
+        if (isFullscreen) {
+          frame.setExtendedState(JFrame.NORMAL);
+        } else {
+          frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        }
+        this.resize(frame.getWidth(), frame.getHeight());
+      } else if (iconCollision) {
+        if (!(frame.getExtendedState() == JFrame.ICONIFIED)) {
+          frame.setExtendedState(JFrame.ICONIFIED);
+        } else {
+          frame.setExtendedState(JFrame.NORMAL);
+        }
+      }
+
+      mousePressed = true;
+    } else if (!parent.mousePressed && mousePressed) {
+      mousePressed = false;
+    }
   }
 
   @Override
