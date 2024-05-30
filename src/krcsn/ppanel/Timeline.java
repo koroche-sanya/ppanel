@@ -12,6 +12,7 @@ public class Timeline {
   protected boolean isPlaying = true;
   
   protected float value = 0;
+  protected long  startMillis = 0;
 
   public Timeline(PApplet parent, Easing.Key[] keys) {
 	this.parent = parent;
@@ -43,7 +44,9 @@ public class Timeline {
   /** Update current playback */
   public void update() {
 	if (isPlaying) {
-      time += speed * (1.0 / parent.frameRate);
+	  long deltaMillis = parent.millis() - startMillis;
+      time += speed * (float)(deltaMillis / 1000.);
+	  startMillis = parent.millis();
     }
     if (time > 1) {
       if (repeat) {
@@ -52,6 +55,14 @@ public class Timeline {
         time = 1;
       }
     }
+	
+	if (time < 0) {
+	  if (repeat) {
+		time = 1;
+	  } else {
+		time = 0;
+	  }
+	}
 	
 	value = Easing.interpolate(keys, time);
   }

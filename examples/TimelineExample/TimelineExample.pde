@@ -1,20 +1,32 @@
+/*
+Timeline Example
+
+Keys:
+R - restart
+H - restart from end
+C - reverse
+z - slower
+x - faster
+*/
+
 import krcsn.ppanel.*;
 import krcsn.ppanel.panels.*;
 
 import static krcsn.ppanel.Easing.*;
 
-BasePlane plane;
+boolean reverse = false;
+float speed = 0.5;
 
-Blend keyBlend = Blend.easeInOutBounce;
-//Blend keyBlend = Blend.linear;
-//Blend keyBlend = Blend.constant;
+Blend keyBlend1 = Blend.easeInOutBounce;
+Blend keyBlend2 = Blend.linear;
+Blend keyBlend3 = Blend.constant;
 
 Key[] keyframes = {
-  key(0, 1, keyBlend),
-  key(0.5, 0, keyBlend),
-  key(0.75, 0.8, keyBlend),
-  key(0.93, 0.5, keyBlend),
-  key(1, 1, keyBlend),
+  key(0, 1, keyBlend1),
+  key(0.5, 0, keyBlend2),
+  key(0.75, 0.8, keyBlend3),
+  key(0.93, 0.5, keyBlend2),
+  key(1, 1, keyBlend1),
 };
 
 TimelineView timeline;
@@ -23,8 +35,7 @@ void setup() {
   size(500, 550);
   timeline = new TimelineView(this, keyframes, 20, 20, width - 40, height - 90);
   timeline.setRepeat(true);
-  
-  plane = new MacOSPlane(this);+
+  frameRate(120);
 }
 
 void draw() {
@@ -35,4 +46,22 @@ void draw() {
   stroke(255);
   strokeWeight(10);
   point(value, height - 10);
+}
+
+void keyPressed() {
+  String ch = String.valueOf((char)keyCode);
+  if (ch.equalsIgnoreCase("r")) {
+    timeline.setTime(0);
+  } else if (ch.equalsIgnoreCase("h")) {
+    timeline.setTime(1);
+  } else if (ch.equalsIgnoreCase("c")) {
+    reverse = !reverse;
+    timeline.setSpeed((reverse ? -speed : speed));
+  } else if (ch.equalsIgnoreCase("z")) {
+    speed /= 2;
+    timeline.setSpeed((reverse ? -speed : speed));
+  } else if (ch.equalsIgnoreCase("x")) {
+    speed *= 2;
+    timeline.setSpeed((reverse ? -speed : speed));
+  }
 }
