@@ -3,15 +3,9 @@ package krcsn.ppanel;
 import processing.core.*;
 
 /** Key[] viewer, player */
-public class TimelineView {
-  private PApplet parent;
-  protected Easing.Key[] keys;
+public class TimelineView extends Timeline {
   protected float x, y;
   protected float w, h;
-  protected float time;
-  protected float speed = 0.1f;
-  protected boolean repeat = false;
-  protected boolean isPlaying = true;
 
   protected boolean showValueInText = true;
   protected boolean showTimeInText = true;
@@ -33,12 +27,9 @@ public class TimelineView {
   protected int gridAreaColor;
   protected int gridColor;
   protected int textColor;
-  
-  private float value = 0;
 
   public TimelineView(PApplet parent, Easing.Key[] keys, float x, float y, float w, float h) {
-    this.parent = parent;
-    this.keys = keys;
+    super(parent, keys);
     this.x = x;
     this.y = y;
     this.w = w;
@@ -50,41 +41,14 @@ public class TimelineView {
     gridColor = parent.color(127, 200);
     textColor = parent.color(255);
   }
-
-  public void setSpeed(float newSpeed) {
-    speed = newSpeed;
-  }
-
-  public void setTime(float time) {
-    this.time = PApplet.constrain(time, 0, 1);
-  }
-
-  public void setRepeat(boolean repeat) {
-    this.repeat = repeat;
-  }
-
-  /** Start playback */
-  public void play() {
-    isPlaying = true;
-  }
-
-  /** Stop playback */
-  public void stop() {
-    isPlaying = false;
+  
+  public TimelineView (Timeline child, float x, float y, float w, float h) {
+	this(child.parent, child.keys, x, y, w, h);
   }
 
   /**  Draw all */
   public void draw() {
-    if (isPlaying) {
-      time += speed * (1.0 / parent.frameRate);
-    }
-    if (time > 1) {
-      if (repeat) {
-        time = 0;
-      } else {
-        time = 1;
-      }
-    }
+    super.update();
 
     PGraphics pg = parent.createGraphics((int) w, (int) h);
     pg.beginDraw();
@@ -267,10 +231,5 @@ public class TimelineView {
   }
   public void setShowValueInText(boolean show) {
     showValueInText = show;
-  }
-
-  /** @return current blend value */
-  public float getValue() {
-    return value;
   }
 }
