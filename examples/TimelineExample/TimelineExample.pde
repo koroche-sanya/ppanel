@@ -17,30 +17,31 @@ import static krcsn.ppanel.Easing.*;
 boolean reverse = false;
 float speed = 0.5;
 
-Blend keyBlend1 = Blend.easeInOutBounce;
+Blend keyBlend1 = Blend.easeInOutExpo;
 Blend keyBlend2 = Blend.linear;
 Blend keyBlend3 = Blend.constant;
 
 Key[] keyframes = {
-  key(0, 1, keyBlend1),
-  key(0.5, 0, keyBlend2),
-  key(0.75, 0.8, keyBlend3),
-  key(0.93, 0.5, keyBlend2),
-  key(1, 1, keyBlend1),
+  key(0, 0, keyBlend1),
+  key(0.5, 1, keyBlend1),
+  key(1, 0, keyBlend1),
 };
 
 TimelineView timeline;
 
 void setup() {
-  size(500, 550);
+  size(500, 500);
   timeline = new TimelineView(this, keyframes, 20, 20, width - 40, height - 90);
   timeline.setRepeat(true);
-  frameRate(120);
+  timeline.setEditable(true);
+  timeline.setTimelineWidth(5);
+  surface.setResizable(true);
 }
 
 void draw() {
   background(0);
   timeline.draw();
+  timeline.resize(width - 40, height - 90);
 
   float value = map(timeline.getValue(), 0, 1, 20, width - 20);
   stroke(255);

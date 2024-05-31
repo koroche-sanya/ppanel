@@ -42,7 +42,49 @@ public class Easing {
       easeInOutElastic,
       easeInBounce,
       easeOutBounce,
-      easeInOutBounce
+      easeInOutBounce;
+	  
+	  @Override
+    public String toString() {
+        switch(this) {
+            case constant: return "Constant";
+            case linear: return "Linear";
+            case easeIn: return "Ease In";
+            case easeOut: return "Ease Out";
+            case easeInOut: return "Ease In-Out";
+            case easeInSine: return "Ease In Sine";
+            case easeOutSine: return "Ease Out Sine";
+            case easeInOutSine: return "Ease In-Out Sine";
+            case easeInQuad: return "Ease In Quad";
+            case easeOutQuad: return "Ease Out Quad";
+            case easeInOutQuad: return "Ease In-Out Quad";
+            case easeInCubic: return "Ease In Cubic";
+            case easeOutCubic: return "Ease Out Cubic";
+            case easeInOutCubic: return "Ease In-Out Cubic";
+            case easeInQuart: return "Ease In Quart";
+            case easeOutQuart: return "Ease Out Quart";
+            case easeInOutQuart: return "Ease In-Out Quart";
+            case easeInQuint: return "Ease In Quint";
+            case easeOutQuint: return "Ease Out Quint";
+            case easeInOutQuint: return "Ease In-Out Quint";
+            case easeInExpo: return "Ease In Expo";
+            case easeOutExpo: return "Ease Out Expo";
+            case easeInOutExpo: return "Ease In-Out Expo";
+            case easeInCirc: return "Ease In Circ";
+            case easeOutCirc: return "Ease Out Circ";
+            case easeInOutCirc: return "Ease In-Out Circ";
+            case easeInBack: return "Ease In Back";
+            case easeOutBack: return "Ease Out Back";
+            case easeInOutBack: return "Ease In-Out Back";
+            case easeInElastic: return "Ease In Elastic";
+            case easeOutElastic: return "Ease Out Elastic";
+            case easeInOutElastic: return "Ease In-Out Elastic";
+            case easeInBounce: return "Ease In Bounce";
+            case easeOutBounce: return "Ease Out Bounce";
+            case easeInOutBounce: return "Ease In-Out Bounce";
+            default: return super.toString();
+        }
+    }
   }
   
   /** @return Easing.Blend from integer*/
