@@ -29,7 +29,7 @@ PPanel also includes a feature called Timelines, which allows you to create vari
 
 1. **TimelineView**: Use `TimelineView` to visualize how the timeline will be played.
 2. **Timeline**: Use `Timeline` to control the playback of animations. A `Timeline` consists of two or more keyframes, each with a specific time, value, and ease type.
-3. **Adjust Playback**: Within a `Timeline`, you can adjust the speed of playback, specify the duration, and determine whether the `Timeline` should repeat after it ends.
+3. **Adjust Playback**: Within a `Timeline`, you can adjust the speed of playback, specify the time, and determine whether the `Timeline` should repeat after it ends.
 
 For more detailed information, refer to the Javadoc for `krcsn.ppanel.Timeline`, `krcsn.ppanel.TimelineView`, and `krcsn.ppanel.Easing`.
 
