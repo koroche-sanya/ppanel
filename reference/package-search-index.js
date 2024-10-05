@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"krcsn.ppanel"},{"l":"krcsn.ppanel.panels"}];updateSearchResults();
